@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
 var reviewSchema = new Schema({
   content: String,
   rating: {type: Number, min: 1, max: 5, default: 5}
@@ -20,7 +21,11 @@ var movieSchema = new Schema({
     }
   }, mpaaRating: String,
   nowShowing: { type: Boolean, default: false },
-  reviews: [reviewSchema]
+  reviews: [reviewSchema],
+  cast: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Performer'  
+  }],
 }, {
   timestamps: true
 });
